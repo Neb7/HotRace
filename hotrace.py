@@ -29,7 +29,11 @@ class Racer:
 class Race:
     """Manages the race between multiple racers"""
     
+    MEDAL_POSITIONS = 3  # Number of positions that receive medals
+    
     def __init__(self, distance: float = 100.0):
+        if distance <= 0:
+            raise ValueError("Race distance must be greater than 0")
         self.distance = distance
         self.racers: List[Racer] = []
         self.results: List[Racer] = []
@@ -97,7 +101,7 @@ class Race:
         print("🏁 RACE RESULTS 🏁")
         print("=" * 50)
         for i, racer in enumerate(self.results, 1):
-            medal = ["🥇", "🥈", "🥉"][i-1] if i <= 3 else "  "
+            medal = ["🥇", "🥈", "🥉"][i-1] if i <= self.MEDAL_POSITIONS else "  "
             print(f"{medal} {i}. {racer.name} - {racer.position:.2f}m")
 
 

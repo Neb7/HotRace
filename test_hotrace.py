@@ -58,6 +58,13 @@ class TestRace(unittest.TestCase):
         race = Race()
         self.assertEqual(race.distance, 100.0)
     
+    def test_race_invalid_distance(self):
+        """Test that race raises error with invalid distance"""
+        with self.assertRaises(ValueError):
+            Race(distance=0)
+        with self.assertRaises(ValueError):
+            Race(distance=-10)
+    
     def test_add_racer(self):
         """Test adding racers to a race"""
         race = Race()
