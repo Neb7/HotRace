@@ -6,7 +6,7 @@
 /*   By: benpicar <benpicar@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 13:32:41 by benpicar          #+#    #+#             */
-/*   Updated: 2025/08/31 14:38:23 by benpicar         ###   ########.fr       */
+/*   Updated: 2025/12/08 17:11:01 by benpicar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ char	*get_next_line(int fd)
 	actual = ft_actual_fd(&buffer, fd);
 	if (!actual)
 		return (ft_free_all(&buffer, actual, NULL, NULL), free(d), NULL);
-	if (!(ft_gnl_read(actual, &d, ft_memchar(actual->vec->buf, '\n', \
-	actual->vec->index))))
+	if (!(ft_gnl_read(actual, &d, ft_memchar(actual->vec->buf, '\n',
+					actual->vec->index))))
 		return (ft_free_all(&buffer, actual, NULL, NULL), free(d), NULL);
 	if (actual->end)
 		ft_free_all(&buffer, actual, NULL, NULL);

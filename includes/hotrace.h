@@ -16,7 +16,8 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <string.h> 
+# include <string.h>
+# include <stdbool.h>
 
 # define HASH_TABLE_SIZE 4096
 
@@ -32,5 +33,24 @@ typedef struct s_hash_table
 	t_dict	**array;
 	size_t	size;
 }	t_hash_table;
+
+/* hash.c */
+size_t			hash_function(const char *key);
+t_hash_table	*create_hash_table(void);
+bool			hash_insert(t_hash_table **table, char *key, char *value);
+char			*hash_search(t_hash_table *table, char *key);
+
+/* utils.c */
+void			ft_bzero(void *s, size_t n);
+char			*ft_strdup_no_nl(char *s);
+size_t			ft_strlen(const char *s);
+int				ft_strcmp(const char *s1, const char *s2);
+
+/* print.c */
+bool			print_res(char *key, char *value);
+void			print_not_found(char *key);
+
+/* free.c */
+void			free_hash_table(t_hash_table **table);
 
 #endif

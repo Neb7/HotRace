@@ -3,7 +3,10 @@ SRCS_DIR	= srcs/
 SRC			= get_next_line.c \
 			  get_next_line_utils.c \
 			  hash.c \
-			  mainb.c
+			  mainb.c \
+			  print.c \
+			  utils.c \
+			  free.c
 
 SRCS		= $(addprefix ${SRCS_DIR}, ${SRC})
 
