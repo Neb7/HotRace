@@ -4,7 +4,7 @@ HotRace - A simple racing game simulation
 """
 import random
 import time
-from typing import List, Dict
+from typing import List
 
 
 class Racer:
@@ -72,10 +72,10 @@ class Race:
                             position = len(self.results)
                             print(f"🏆 {racer.name} finished in position {position}!")
             
-            if display and step % 10 == 0:
-                self._display_progress()
-            
-            time.sleep(0.05)  # Small delay for visualization
+            if display:
+                if step % 10 == 0:
+                    self._display_progress()
+                time.sleep(0.05)  # Small delay for visualization
         
         if display:
             self._display_results()
