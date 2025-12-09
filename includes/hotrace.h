@@ -6,7 +6,7 @@
 /*   By: benpicar <benpicar@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:11:28 by benpicar          #+#    #+#             */
-/*   Updated: 2025/12/08 16:33:39 by benpicar         ###   ########.fr       */
+/*   Updated: 2025/12/09 12:37:16 by benpicar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,22 @@ typedef struct s_hash_table
 }	t_hash_table;
 
 /* hash.c */
-size_t			hash_function(const char *key);
-t_hash_table	*create_hash_table(void);
-bool			hash_insert(t_hash_table **table, char *key, char *value);
-char			*hash_search(t_hash_table *table, char *key);
+extern t_hash_table	*create_hash_table(void);
+extern bool			hash_insert(t_hash_table **table, char *key, char *value);
+extern char			*hash_search(t_hash_table *table, char *key);
 
 /* utils.c */
-void			ft_bzero(void *s, size_t n);
-char			*ft_strdup_no_nl(char *s);
-size_t			ft_strlen(const char *s);
-int				ft_strcmp(const char *s1, const char *s2);
+extern void			ft_bzero(void *s, size_t n);
+extern char			*ft_strdup_no_nl(char *s);
+extern size_t		ft_strlen(const char *s);
+extern int			ft_strcmp(const char *s1, const char *s2);
 
 /* print.c */
-bool			print_res(char *key, char *value);
-void			print_not_found(char *key);
-void			print_error(t_hash_table **table, char *msg);
+extern bool			print_res(char *key, char *value);
+extern void			print_not_found(char *key);
+extern void			print_error(t_hash_table **table, char *msg);
 
 /* free.c */
-void			free_hash_table(t_hash_table **table);
+extern void			free_hash_table(t_hash_table **table);
 
 #endif

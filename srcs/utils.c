@@ -6,14 +6,14 @@
 /*   By: benpicar <benpicar@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 17:44:11 by benpicar          #+#    #+#             */
-/*   Updated: 2025/12/08 18:16:06 by benpicar         ###   ########.fr       */
+/*   Updated: 2025/12/09 12:44:10 by benpicar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hotrace.h"
 #include "get_next_line.h"
 
-void	ft_bzero(void *s, size_t n)
+inline void	ft_bzero(void *s, size_t n)
 {
 	size_t	i;
 
@@ -36,7 +36,7 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 
-char	*ft_strdup_no_nl(char *s)
+inline char	*ft_strdup_no_nl(char *s)
 {
 	char	*d;
 	size_t	len;
@@ -54,7 +54,7 @@ char	*ft_strdup_no_nl(char *s)
 	return (d);
 }
 
-size_t	ft_strlen(const char *s)
+inline size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
@@ -64,7 +64,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-int	ft_strcmp(const char *s1, const char *s2)
+inline int	ft_strcmp(const char *s1, const char *s2)
 {
 	size_t	i;
 

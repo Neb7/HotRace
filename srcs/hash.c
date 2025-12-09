@@ -6,7 +6,7 @@
 /*   By: benpicar <benpicar@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:42:02 by benpicar          #+#    #+#             */
-/*   Updated: 2025/12/09 11:53:52 by benpicar         ###   ########.fr       */
+/*   Updated: 2025/12/09 12:44:12 by benpicar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static inline bool	is_existe_already(t_hash_table *table, char *key,
 	return (false);
 }
 
-t_hash_table	*create_hash_table(void)
+inline t_hash_table	*create_hash_table(void)
 {
 	t_hash_table	*table;
 
@@ -73,7 +73,7 @@ t_hash_table	*create_hash_table(void)
 	return (table);
 }
 
-bool	hash_insert(t_hash_table **table, char *key, char *value)
+inline bool	hash_insert(t_hash_table **table, char *key, char *value)
 {
 	size_t	index;
 	t_dict	*new_dict;
@@ -93,7 +93,7 @@ bool	hash_insert(t_hash_table **table, char *key, char *value)
 	return (true);
 }
 
-char	*hash_search(t_hash_table *table, char *key)
+inline char	*hash_search(t_hash_table *table, char *key)
 {
 	size_t	index;
 	t_dict	*current;

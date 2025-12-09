@@ -6,14 +6,14 @@
 /*   By: benpicar <benpicar@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 18:11:03 by benpicar          #+#    #+#             */
-/*   Updated: 2025/12/08 18:12:03 by benpicar         ###   ########.fr       */
+/*   Updated: 2025/12/09 12:37:24 by benpicar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include "hotrace.h"
 
-void	free_hash_table(t_hash_table **table)
+inline void	free_hash_table(t_hash_table **table)
 {
 	size_t	i;
 	t_dict	*current;
