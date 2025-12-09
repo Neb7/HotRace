@@ -6,14 +6,14 @@
 /*   By: benpicar <benpicar@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:42:02 by benpicar          #+#    #+#             */
-/*   Updated: 2025/12/09 11:12:11 by benpicar         ###   ########.fr       */
+/*   Updated: 2025/12/09 11:53:52 by benpicar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hotrace.h"
 #include "get_next_line.h"
 
-size_t	hash_function(const char *key)
+static inline size_t	hash_function(const char *key)
 {
 	size_t	hash;
 	size_t	i;
@@ -26,6 +26,36 @@ size_t	hash_function(const char *key)
 		i++;
 	}
 	return (hash % HASH_TABLE_SIZE);
+}
+
+static inline bool	is_existe_already(t_hash_table *table, char *key,
+		char *value)
+{
+	size_t	index;
+	t_dict	*current;
+	char	*clean_key;
+
+	clean_key = ft_strdup_no_nl(key);
+	if (!clean_key)
+		return (print_error(&table,
+				"Error: Memory allocation failed\n"), false);
+	index = hash_function(clean_key);
+	current = table->array[index];
+	while (current)
+	{
+		if (ft_strcmp(current->key, clean_key) == 0)
+		{
+			free(clean_key);
+			current->value = ft_strdup_no_nl(value);
+			if (!current->value)
+				return (print_error(&table,
+						"Error: Memory allocation failed\n"), false);
+			return (true);
+		}
+		current = current->next;
+	}
+	free(clean_key);
+	return (false);
 }
 
 t_hash_table	*create_hash_table(void)
@@ -48,6 +78,8 @@ bool	hash_insert(t_hash_table **table, char *key, char *value)
 	size_t	index;
 	t_dict	*new_dict;
 
+	if (is_existe_already(*table, key, value))
+		return (true);
 	new_dict = (t_dict *)malloc(sizeof(t_dict));
 	if (!new_dict)
 		return (print_error(table, "Error: Memory allocation failed\n"), false);
@@ -79,7 +111,7 @@ char	*hash_search(t_hash_table *table, char *key)
 		if (ft_strcmp(current->key, clean_key) == 0)
 		{
 			result = current->value;
-			break;
+			break ;
 		}
 		current = current->next;
 	}
