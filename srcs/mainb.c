@@ -49,11 +49,12 @@ static inline void	process_searches(t_hash_table *table)
 {
 	char	*line;
 	char	*key;
+	char	*clean_line;
 
 	line = get_next_line(0);
 	while (line)
 	{
-		char *clean_line = ft_strdup_no_nl(line);
+		clean_line = ft_strdup_no_nl(line);
 		if (clean_line)
 		{
 			key = hash_search(table, clean_line);
@@ -71,7 +72,7 @@ static inline void	process_searches(t_hash_table *table)
 int	main(void)
 {
 	t_hash_table	*table;
-	
+
 	table = create_hash_table();
 	if (!table)
 		return (1);
