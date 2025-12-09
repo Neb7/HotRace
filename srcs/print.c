@@ -34,8 +34,8 @@ void	print_not_found(char *key)
 
 void	print_error(t_hash_table **table, char *msg)
 {
-	write(1, RED, 7);
-	write(1, msg, ft_strlen(msg));
-	write(1, NC, 4);
+	write(2, RED, 7);
+	write(2, msg, ft_strlen(msg));
+	write(2, NC, 4);
 	free_hash_table(table);
 }
