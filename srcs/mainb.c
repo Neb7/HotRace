@@ -6,29 +6,29 @@
 /*   By: benpicar <benpicar@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 17:12:04 by benpicar          #+#    #+#             */
-/*   Updated: 2025/12/09 12:27:07 by benpicar         ###   ########.fr       */
+/*   Updated: 2025/12/09 12:55:18 by benpicar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hotrace.h"
 #include "get_next_line.h"
 
-static inline bool	fill_hash_rotine(t_hash_table **table, char *key,
-		char *line, size_t *count)
+static inline bool	fill_hash_rotine(t_hash_table **table, char **key,
+		char **line, size_t *count)
 {
-	while (line && line[0] != '\n')
+	while (*line && (*line)[0] != '\n')
 	{
 		if (*count % 2 == 0)
-			key = line;
+			*key = *line;
 		else
 		{
-			if (!hash_insert(table, key, line))
-				return (free(line), free(key), false);
-			free(key);
-			free(line);
+			if (!hash_insert(table, *key, *line))
+				return (free(*line), free(*key), false);
+			free(*key);
+			free(*line);
 		}
 		(*count)++;
-		line = get_next_line(0);
+		*line = get_next_line(0);
 	}
 	return (true);
 }
@@ -42,12 +42,12 @@ static inline bool	fill_hash_table(t_hash_table **table)
 	line = get_next_line(0);
 	count = 0;
 	key = NULL;
-	if (!fill_hash_rotine(table, NULL, line, &count))
+	if (!fill_hash_rotine(table, &key, &line, &count))
 		return (false);
 	if (count % 2 != 0)
 	{
 		if (!hash_insert(table, key, ""))
-			return (free(key), free(line), false);
+			return (free(key), false);
 		free(key);
 	}
 	free(line);
