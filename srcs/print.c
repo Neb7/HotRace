@@ -6,7 +6,7 @@
 /*   By: benpicar <benpicar@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 17:52:07 by benpicar          #+#    #+#             */
-/*   Updated: 2025/12/09 13:06:22 by benpicar         ###   ########.fr       */
+/*   Updated: 2025/12/09 13:14:33 by benpicar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ inline void	print_not_found(char *key)
 
 inline void	print_error(t_hash_table **table, char *msg)
 {
-	write(1, RED, 7);
-	write(1, msg, ft_strlen(msg));
-	write(1, NC, 4);
+	write(2, RED, 7);
+	write(2, msg, ft_strlen(msg));
+	write(2, NC, 4);
 	free_hash_table(table);
 }
