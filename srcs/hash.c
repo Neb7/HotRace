@@ -6,7 +6,7 @@
 /*   By: benpicar <benpicar@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:42:02 by benpicar          #+#    #+#             */
-/*   Updated: 2025/12/08 18:22:57 by benpicar         ###   ########.fr       */
+/*   Updated: 2025/12/09 11:12:11 by benpicar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,11 @@ t_hash_table	*create_hash_table(void)
 
 	table = (t_hash_table *)malloc(sizeof(t_hash_table));
 	if (!table)
-		return (NULL);
-	// ft_bzero(table, sizeof(t_hash_table));
+		return (print_error(NULL, "Error: Memory allocation failed\n"), NULL);
 	table->size = HASH_TABLE_SIZE;
 	table->array = (t_dict **)malloc(sizeof(t_dict *) * table->size);
 	if (!table->array)
-	{
-		free(table);
-		return (NULL);
-	}
+		return (print_error(&table, "Error: Memory allocation failed\n"), NULL);
 	ft_bzero(table->array, sizeof(t_dict *) * table->size);
 	return (table);
 }
@@ -54,16 +50,11 @@ bool	hash_insert(t_hash_table **table, char *key, char *value)
 
 	new_dict = (t_dict *)malloc(sizeof(t_dict));
 	if (!new_dict)
-		return (false);
+		return (print_error(table, "Error: Memory allocation failed\n"), false);
 	new_dict->key = ft_strdup_no_nl(key);
 	new_dict->value = ft_strdup_no_nl(value);
 	if (!new_dict->key || !new_dict->value)
-	{
-		free(new_dict->key);
-		free(new_dict->value);
-		free(new_dict);
-		return (false);
-	}
+		return (print_error(table, "Error: Memory allocation failed\n"), false);
 	index = hash_function(new_dict->key);
 	new_dict->next = (*table)->array[index];
 	(*table)->array[index] = new_dict;
@@ -79,7 +70,7 @@ char	*hash_search(t_hash_table *table, char *key)
 
 	clean_key = ft_strdup_no_nl(key);
 	if (!clean_key)
-		return (NULL);
+		return (print_error(&table, "Error: Memory allocation failed\n"), NULL);
 	index = hash_function(clean_key);
 	current = table->array[index];
 	result = NULL;

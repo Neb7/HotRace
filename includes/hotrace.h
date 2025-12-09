@@ -21,6 +21,11 @@
 
 # define HASH_TABLE_SIZE 4096
 
+# define CYAN	"\033[0;96m"
+# define RED	"\033[0;91m"
+# define YELLOW	"\033[0;93m"
+# define NC		"\033[0m"
+
 typedef struct s_dict
 {
 	char			*key;
@@ -49,6 +54,7 @@ int				ft_strcmp(const char *s1, const char *s2);
 /* print.c */
 bool			print_res(char *key, char *value);
 void			print_not_found(char *key);
+void			print_error(t_hash_table **table, char *msg);
 
 /* free.c */
 void			free_hash_table(t_hash_table **table);

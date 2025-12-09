@@ -18,7 +18,7 @@ OBJS		= $(addprefix ${OBJS_DIR}, ${SRC:.c=.o})
 NAME		= hotrace
 RM			= rm -f
 INCLUDE		= -I includes/
-CFLAGS		= -Wall -Wextra -Werror ${INCLUDE} -O3 -g3
+CFLAGS		= -Wall -Wextra -Werror ${INCLUDE} -O3
 CC			= cc
 
 #Colors
