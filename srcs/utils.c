@@ -6,12 +6,11 @@
 /*   By: benpicar <benpicar@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 17:44:11 by benpicar          #+#    #+#             */
-/*   Updated: 2025/12/09 12:44:10 by benpicar         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:57:30 by benpicar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hotrace.h"
-#include "get_next_line.h"
 
 inline void	ft_bzero(void *s, size_t n)
 {
@@ -72,4 +71,28 @@ inline int	ft_strcmp(const char *s1, const char *s2)
 	while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i])
 		i++;
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+inline void	*ft_memcpy(void *dest, const void *src, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	if (dest != NULL && src != NULL)
+	{
+		while (n >= sizeof(long long))
+		{
+			((long long *)dest)[i] = ((long long *)src)[i];
+			i++;
+			n = n - sizeof(long long);
+		}
+		i = i * sizeof(long long);
+		while (n > 0)
+		{
+			((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+			n--;
+			i++;
+		}
+	}
+	return (dest);
 }

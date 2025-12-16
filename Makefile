@@ -1,12 +1,13 @@
 # Sources
 SRCS_DIR	= srcs/
-SRC			= get_next_line.c \
-			  get_next_line_utils.c \
-			  hash.c \
+SRC			= hash.c \
 			  mainb.c \
 			  print.c \
 			  utils.c \
-			  free.c
+			  free.c \
+			  fast_reader.c \
+			  fast_reader_utils.c \
+			  ft_vector.c
 
 SRCS		= $(addprefix ${SRCS_DIR}, ${SRC})
 

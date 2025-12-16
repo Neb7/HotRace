@@ -6,12 +6,11 @@
 /*   By: benpicar <benpicar@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:42:02 by benpicar          #+#    #+#             */
-/*   Updated: 2025/12/09 13:01:42 by benpicar         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:36:11 by benpicar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hotrace.h"
-#include "get_next_line.h"
 
 static inline size_t	hash_function(const char *key)
 {
@@ -26,36 +25,6 @@ static inline size_t	hash_function(const char *key)
 		i++;
 	}
 	return (hash % HASH_TABLE_SIZE);
-}
-
-static inline int	is_existe_already(t_hash_table *table, char *key,
-		char *value, char *clean_key)
-{
-	size_t	index;
-	t_dict	*current;
-
-	clean_key = ft_strdup_no_nl(key);
-	if (!clean_key)
-		return (print_error(&table,
-				"Error: Memory allocation failed\n"), -1);
-	index = hash_function(clean_key);
-	current = table->array[index];
-	while (current)
-	{
-		if (ft_strcmp(current->key, clean_key) == 0)
-		{
-			free(clean_key);
-			free(current->value);
-			current->value = ft_strdup_no_nl(value);
-			if (!current->value)
-				return (print_error(&table,
-						"Error: Memory allocation failed\n"), -1);
-			return (0);
-		}
-		current = current->next;
-	}
-	free(clean_key);
-	return (1);
 }
 
 inline t_hash_table	*create_hash_table(void)
@@ -77,13 +46,7 @@ inline bool	hash_insert(t_hash_table **table, char *key, char *value)
 {
 	size_t	index;
 	t_dict	*new_dict;
-	int		ret;
 
-	ret = is_existe_already(*table, key, value, NULL);
-	if (ret == 0)
-		return (true);
-	else if (ret == -1)
-		return (false);
 	new_dict = (t_dict *)malloc(sizeof(t_dict));
 	if (!new_dict)
 		return (print_error(table, "Error: Memory allocation failed\n"), false);
